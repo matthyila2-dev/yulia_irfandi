@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Tamu Undangan – Yulia & Irfandi</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    header h1 {
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: #7f8c8d;
+      font-size: 14px;
+    }
+
+    .guest-list {
+      margin-top: 25px;
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .name {
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 16px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      background: #25D366;
+      color: white;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: background 0.3s;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: #1ebe5d;
+    }
+
+    .btn img {
+      width: 18px;
+      height: 18px;
+    }
+
+    footer {
+      font-size: 12px;
+      color: #888;
+      margin: 30px 0 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Daftar Tamu Undangan</h1>
+    <p>Yulia & Irfandi</p>
+  </header>
+
+  <div class="guest-list" id="guestList">
+</div>
+
+  <footer>
+    <p>💌 Yulia & Irfandi Wedding Invitation</p>
+  </footer>
+
+  <script>
+    const container = document.getElementById("guestList");
+    
+    // 🚨 PASTE WEB APP URL DARI GOOGLE APPS SCRIPT KAMU DI SINI! 🚨
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbxRnuERAjYngA5TRWNx0eg1v4EbKt0kRdnajutfgJdhqNz-2hESvdbRR_ZzJJ6PvcU-hA/exec"; 
+
+    async function loadGuests() {
+      try {
+        // Tampilkan pesan loading yang lebih menarik
+        container.innerHTML = '<p class="info-message">Memuat daftar tamu undangan...</p>';
+        
+        // Ambil data dari Apps Script (Google Sheet)
+        const response = await fetch(webAppUrl);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const guests = await response.json();
+
+        // Hapus pesan loading
+        container.innerHTML = '';
+        
+        // Iterasi dan tampilkan data
+        if (guests.length === 0) {
+          container.innerHTML = '<p class="info-message">Daftar tamu kosong saat ini.</p>';
+        } else {
+          guests.forEach(tamu => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+              <span class="name">${tamu.name}</span>
+              <a href="${tamu.wa}" target="_blank" class="btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA Logo">
+                Kirim
+              </a>
+            `;
+            container.appendChild(card);
+          });
+        }
+
+      } catch (error) {
+        console.error("Gagal memuat data tamu:", error);
+        container.innerHTML = '<p class="info-message error-message">❌ Ups! Gagal memuat daftar tamu. Mohon coba lagi nanti atau hubungi admin.</p>';
+      }
+    }
+
+    // Panggil fungsi saat halaman dimuat
+    loadGuests();
+  </script>
+</body>
+</html>
+
