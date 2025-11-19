@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daftar Tamu Undangan – Yulia & Irfandi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -100,62 +101,589 @@
     <p>Yulia & Irfandi</p>
   </header>
 
-  <div class="guest-list" id="guestList">
-</div>
+  <div class="guest-list" id="guestList"></div>
 
   <footer>
     <p>💌 Yulia & Irfandi Wedding Invitation</p>
   </footer>
 
   <script>
+    // 🧾 Daftar tamu dengan link WA masing-masing
+    const guests = [
+      {
+    name: "ABD. KADIR. ASSAGAF",
+    wa: "https://api.whatsapp.com/send?text=Kepada+ABD.+KADIR.+ASSAGAF%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "ADI ASTUDY. IDRIS",
+    wa: "https://api.whatsapp.com/send?text=Kepada+ADI+ASTUDY.+IDRIS%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "AHDI. UMASUGI",
+    wa: "https://api.whatsapp.com/send?text=Kepada+AHDI.+UMASUGI%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Aina Fatmawati, Amd Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Aina+Fatmawati%2C+Amd+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Aiska Novianty",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Aiska+Novianty%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "AK 2010",
+    wa: "https://api.whatsapp.com/send?text=Kepada+AK+2010%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "ALFI. LUILATU",
+    wa: "https://api.whatsapp.com/send?text=Kepada+ALFI.+LUILATU%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "ALFIAN. SUNETH",
+    wa: "https://api.whatsapp.com/send?text=Kepada+ALFIAN.+SUNETH%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "AMRAN. TOMIA dan pasangan",
+    wa: "https://api.whatsapp.com/send?text=Kepada+AMRAN.+TOMIA+dan+pasangan%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Anjaryi Karim, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Anjaryi+Karim%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Apr. Abdul Farid Abdu, S. Farm",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Apr.+Abdul+Farid+Abdu%2C+S.+Farm%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Aprian Arfan Latuny, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Aprian+Arfan+Latuny%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Aristi Yunita, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Aristi+Yunita%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "ARS. HAMDIN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+ARS.+HAMDIN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "ARSAD. BISUGI",
+    wa: "https://api.whatsapp.com/send?text=Kepada+ARSAD.+BISUGI%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Arsina Arif Umasugi, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Arsina+Arif+Umasugi%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Asnaini T., Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Asnaini+T.%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "AZMIN. DIMAN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+AZMIN.+DIMAN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "BABANG ACIEH",
+    wa: "https://api.whatsapp.com/send?text=Kepada+BABANG+ACIEH%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "BANG IRWAN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+BANG+IRWAN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "BARKA. KIAT",
+    wa: "https://api.whatsapp.com/send?text=Kepada+BARKA.+KIAT%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "BPMD BASUDARA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+BPMD+BASUDARA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Camia Badaria Tuhauw, Amd Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Camia+Badaria+Tuhauw%2C+Amd+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Darti Umasugi, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Darti+Umasugi%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Dewi Astrid Maylen",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Dewi+Astrid+Maylen%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Diela Latuny, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Diela+Latuny%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "dr. Nahlaisamah Jandudin",
+    wa: "https://api.whatsapp.com/send?text=Kepada+dr.+Nahlaisamah+Jandudin%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "drg. Wirna Tasmir Canlago",
+    wa: "https://api.whatsapp.com/send?text=Kepada+drg.+Wirna+Tasmir+Canlago%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Endah Sulawati, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Endah+Sulawati%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Eri Rahmiya, Amd Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Eri+Rahmiya%2C+Amd+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+{
+    name: "Fadilla A.P.S Hurassan, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Fadilla%2C+A.P.S+Hurassan%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Fadilah Tuanakotta, Amd Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Fadilah+Tuanakotta%2C+Amd+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Fauija Ternate, S.Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Fauija+Ternate%2C+S.Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Feni Lainity",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Feni+Lainity%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "FITRI HANDAYANI dan suami",
+    wa: "https://api.whatsapp.com/send?text=Kepada+FITRI+HANDAYANI+dan+suami%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Fitrianti Lojalolek, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Fitrianti+Lojalolek%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Fransina Yutom",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Fransina+Yutom%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "GR. ISMAN. PAPALEA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+GR.+ISMAN.+PAPALEA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "GR. LUTFI. SIOMPO",
+    wa: "https://api.whatsapp.com/send?text=Kepada+GR.+LUTFI.+SIOMPO%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "GUSTAFO. USRA. HERNAND HUKUL",
+    wa: "https://api.whatsapp.com/send?text=Kepada+GUSTAFO.+USRA.+HERNAND+HUKUL%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "HAMSIR. MAKA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+HAMSIR.+MAKA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "HARIS. MAMANG",
+    wa: "https://api.whatsapp.com/send?text=Kepada+HARIS.+MAMANG%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "HASIMIN. RANO dan pasangan",
+    wa: "https://api.whatsapp.com/send?text=Kepada+HASIMIN.+RANO+dan+pasangan%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "HASPI. MABA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+HASPI.+MABA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "IBRAHIM. LESNUSA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+IBRAHIM.+LESNUSA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Inggrid Capalakhu, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Inggrid+Capalakhu%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Ismiyyarsi Herlambang Sise, S.Kep., Ns",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Ismiyyarsi+Herlambang+Sise%2C+S.Kep.%2C+Ns%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Iwa Rahma, Amd. Gz",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Iwa+Rahma%2C+Amd.+Gz%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "J. Ratnawei, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+J.+Ratnawei%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "JULFANI. LUMAELA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+JULFANI.+LUMAELA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "JURAGAN. JAJANG",
+    wa: "https://api.whatsapp.com/send?text=Kepada+JURAGAN.+JAJANG%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Kalsum Lesilolo, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Kalsum+Lesilolo%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "KARANG TARUNA WAPLAU",
+    wa: "https://api.whatsapp.com/send?text=Kepada+KARANG+TARUNA+WAPLAU%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "KARIM. BESAN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+KARIM.+BESAN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Karman Wally",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Karman+Wally%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Leni Lesilolo, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Leni+Lesilolo%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "LINCAH TEAM",
+    wa: "https://api.whatsapp.com/send?text=Kepada+LINCAH+TEAM%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Lombok Bugis, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Lombok+Bugis%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "M. DIN. RUHUNUSA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+M.+DIN.+RUHUNUSA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "MADWAN. LUILATU",
+    wa: "https://api.whatsapp.com/send?text=Kepada+MADWAN.+LUILATU%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+{
+    name: "MARIO. KALIKY",
+    wa: "https://api.whatsapp.com/send?text=Kepada+MARIO.+KALIKY%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "MASTUR",
+    wa: "https://api.whatsapp.com/send?text=Kepada+MASTUR%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Meike S. Suatmono, Amd. Farm",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Meike+S.+Suatmono%2C+Amd.+Farm%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Mila Arafah, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Mila+Arafah%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Mila Rahayu, S.K.M",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Mila+Rahayu%2C+S.K.M%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Mohamad Taes Umang, A.Md. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Mohamad+Taes+Umang%2C+A.Md.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "MUHADJIR. BESAN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+MUHADJIR.+BESAN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "MUHAMAD. BESAN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+MUHAMAD.+BESAN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Muhammad Saddiq, S. Kep., Ns",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Muhammad+Saddiq%2C+S.+Kep.%2C+Ns%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Mujuna Galela, S.Kep., Ns",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Mujuna+Galela%2C+S.Kep.%2C+Ns%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "MUKLEN. WAMNEBO",
+    wa: "https://api.whatsapp.com/send?text=Kepada+MUKLEN.+WAMNEBO%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Murhasnah, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Murhasnah%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nadia Lausepa",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nadia+Lausepa%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nina Wamnebo, SKM",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nina+Wamnebo%2C+SKM%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Niska Umaternate, S.Kep., Ns",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Niska+Umaternate%2C+S.Kep.%2C+Ns%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nivia Dahniar Difinubun, Amd. Kes",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nivia+Dahniar+Difinubun%2C+Amd.+Kes%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Niwant Tanesya, A.Md. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Niwant+Tanesya%2C+A.Md.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Novianti Tasidjawa, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Novianti+Tasidjawa%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Novianty M. Betan, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Novianty+M.+Betan%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Novita H. Larat, S.Kep., Ns.",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Novita+H.+Larat%2C+S.Kep.%2C+Ns.%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Novita S. Fatgehion, A.Md. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Novita+S.+Fatgehion%2C+A.Md.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nugraha A.M. Maopu, S.Kep., Ns",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nugraha+A.M.+Maopu%2C+S.Kep.%2C+Ns%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "NUR. MUFIN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+NUR.+MUFIN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nurdian Rumakwai, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nurdian+Rumakwai%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nurhayati Tasidjawa, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nurhayati+Tasidjawa%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nurlia Mayanti",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nurlia+Mayanti%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Nurqaulan Umanailo, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Nurqaulan+Umanailo%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "NUSANTARA WAPLAU",
+    wa: "https://api.whatsapp.com/send?text=Kepada+NUSANTARA+WAPLAU%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "P3K PW PMD",
+    wa: "https://api.whatsapp.com/send?text=Kepada+P3K+PW+PMD%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Pinki Naura Buton",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Pinki+Naura+Buton%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+{
+    name: "Putri A. Mukdar, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Putri+A.+Mukdar%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rachel Herda Lamaseri",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rachel+Herda+Lamaseri%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rahayu Imansula, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rahayu+Imansula%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "RAHMAWATI dan suami",
+    wa: "https://api.whatsapp.com/send?text=Kepada+RAHMAWATI+dan+suami%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rani Sumanda Woy",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rani+Sumanda+Woy%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Reni Djawa, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Reni+Djawa%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Resmin Nurlette, A.Md Gz",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Resmin+Nurlette%2C+A.Md+Gz%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rezky Yusuf Mamma, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rezky+Yusuf+Mamma%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rian Mutaqqin, S.Kep., Ns",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rian+Mutaqqin%2C+S.Kep.%2C+Ns%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Risnawati Walulung, S. Farm",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Risnawati+Walulung%2C+S.+Farm%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rosita Duwillah, Amd.",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rosita+Duwillah%2C+Amd.%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rumiyati Zamaloe, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rumiyati+Zamaloe%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Rupmi Bogar, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Rupmi+Bogar%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Santi Hoga, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Santi+Hoga%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Saria Soamole, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Saria+Soamole%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Sartika Bakri, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Sartika+Bakri%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Siti Nurwahyu Bilatu, AMAK",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Siti+Nurwahyu+Bilatu%2C+AMAK%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Siti Rezki Nurrhe Sari, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Siti+Rezki+Nurrhe+Sari%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "SKUAD MUAMALAH. E",
+    wa: "https://api.whatsapp.com/send?text=Kepada+SKUAD+MUAMALAH.+E%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Sriwulan Wali, S. Kep., Ners",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Sriwulan+Wali%2C+S.+Kep.%2C+Ners%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Sumarni Darnil, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Sumarni+Darnil%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "SUPRIYANTO. UMASUGI",
+    wa: "https://api.whatsapp.com/send?text=Kepada+SUPRIYANTO.+UMASUGI%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Surnia Buton, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Surnia+Buton%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Suryani Tomia",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Suryani+Tomia%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Susi Sariyati, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Susi+Sariyati%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Sutyowati, S. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Sutyowati%2C+S.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "SYARIF. BANDA",
+    wa: "https://api.whatsapp.com/send?text=Kepada+SYARIF.+BANDA%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Tuti Alu, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Tuti+Alu%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Tuti Islamiah Mas'ud, S.Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Tuti+Islamiah+Mas%27ud%2C+S.Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Ulfah Nur, Amd. Kep",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Ulfah+Nur%2C+Amd.+Kep%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+// --- DATA DARI image_75efea.png (Tamu No. 121 - 138) ---
+  {
+    name: "Ulin Chiado Fola, S.KM",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Ulin+Chiado+Fola%2C+S.KM%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Wa Heni Buton, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Wa+Heni+Buton%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Wahdaniyah Buamona",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Wahdaniyah+Buamona%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "WANDO. SEPTIANSYAH",
+    wa: "https://api.whatsapp.com/send?text=Kepada+WANDO.+SEPTIANSYAH%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "WIA NAMSA dan suami",
+    wa: "https://api.whatsapp.com/send?text=Kepada+WIA+NAMSA+dan+suami%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Widia Umasugi, Amd. Gz",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Widia+Umasugi%2C+Amd.+Gz%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Widianty Umasugi, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Widianty+Umasugi%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Wimpiyanti, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Wimpiyanti%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Winda Wael, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Winda+Wael%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "YADI. TANAMAL",
+    wa: "https://api.whatsapp.com/send?text=Kepada+YADI.+TANAMAL%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Yeni Mayola",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Yeni+Mayola%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Yiti Sianipar, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Yiti+Sianipar%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Yuni Tumanu, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Yuni+Tumanu%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Yunita Samada, SKM",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Yunita+Samada%2C+SKM%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Yusnindar Soamole, Amd. Keb",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Yusnindar+Soamole%2C+Amd.+Keb%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "YUSUF. BESAN",
+    wa: "https://api.whatsapp.com/send?text=Kepada+YUSUF.+BESAN%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "YUSUF. LATUAPO",
+    wa: "https://api.whatsapp.com/send?text=Kepada+YUSUF.+LATUAPO%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  },
+  {
+    name: "Zonoveti Wadani Wattimena, A.Md.KI",
+    wa: "https://api.whatsapp.com/send?text=Kepada+Zonoveti+Wadani+Wattimena%2C+A.Md.KI%2C%0D%0AKami+mengundang+saudara%2F%28i%29+untuk+menghadiri+acara+pernikahan+kami%0D%0A%0D%0A%2AYulia+%26+Irfandi%2A%0D%0A%0D%0APesan+ini+merupakan+undangan+resmi+dari+kami.+Silahkan+kunjungi+link+berikut+untuk+membuka+undangan+anda%3A%0D%0Ahttps%3A%2F%2Fwevitation.com%2FYulia-Irfandi%2F%0D%0A%0D%0AAtas+kehadiran+%26+doa+restu+dari+saudara%2C+kami+ucapkan+terimakasih.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A_Pesan+ini+dikirim+melalui_+wevitation.com"
+  }
+      // {
+      //   name: "Citra",
+      //   wa: "https://api.whatsapp.com/send?text=Kepada+Citra%2C%0AKami+mengundang+Anda+untuk+menghadiri+acara+pernikahan+kami%0A%0AFaisal+Rumakat+%26+Anisa+F.+Latuwael%0Ahttps%3A%2F%2Fwevitation.com%2Ffaisal-anisa%2F269D69BMV"
+      // },
+      
+      // Tambahkan tamu lainnya di sini
+    ];
+
+    // Generate tampilan tamu
     const container = document.getElementById("guestList");
-    
-    // 🚨 PASTE WEB APP URL DARI GOOGLE APPS SCRIPT KAMU DI SINI! 🚨
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbxRnuERAjYngA5TRWNx0eg1v4EbKt0kRdnajutfgJdhqNz-2hESvdbRR_ZzJJ6PvcU-hA/exec"; 
+    guests.forEach(tamu => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <span class="name">${tamu.name}</span>
+        <a href="${tamu.wa}" target="_blank" class="btn"><i class="fa-brands fa-whatsapp"></i> Kirim</a>
+      `;
+      container.appendChild(card);
+    });
 
-    async function loadGuests() {
-      try {
-        // Tampilkan pesan loading yang lebih menarik
-        container.innerHTML = '<p class="info-message">Memuat daftar tamu undangan...</p>';
-        
-        // Ambil data dari Apps Script (Google Sheet)
-        const response = await fetch(webAppUrl);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const guests = await response.json();
-
-        // Hapus pesan loading
-        container.innerHTML = '';
-        
-        // Iterasi dan tampilkan data
-        if (guests.length === 0) {
-          container.innerHTML = '<p class="info-message">Daftar tamu kosong saat ini.</p>';
-        } else {
-          guests.forEach(tamu => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-              <span class="name">${tamu.name}</span>
-              <a href="${tamu.wa}" target="_blank" class="btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA Logo">
-                Kirim
-              </a>
-            `;
-            container.appendChild(card);
-          });
-        }
-
-      } catch (error) {
-        console.error("Gagal memuat data tamu:", error);
-        container.innerHTML = '<p class="info-message error-message">❌ Ups! Gagal memuat daftar tamu. Mohon coba lagi nanti atau hubungi admin.</p>';
-      }
-    }
-
-    // Panggil fungsi saat halaman dimuat
-    loadGuests();
+    
   </script>
 </body>
 </html>
